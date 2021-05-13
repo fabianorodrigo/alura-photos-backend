@@ -1,0 +1,23 @@
+{
+  "name": "alura-photos-backend",
+  "version": "1.0.0",
+  "description": "Stub de backend do para uso no alura-photos-angular (criado no curso de Angular da Alura)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fabianorodrigo/alura-photos-backend.git"
+  },
+  "author": "Fabiano Nascimento",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fabianorodrigo/alura-photos-backend/issues"
+  },
+  "homepage": "https://github.com/fabianorodrigo/alura-photos-backend#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1"
+  }
+}
