@@ -7,6 +7,12 @@ const app = express()
 app.use(cors())
 app.use(express.json());
 
+app.use(function(req, res, next) {
+  //permitir o envio do header x-access-token. O httpClient do Angular não está conseguindo (embora o Postman consiga sem isso)
+  res.header("Access-Control-Expose-Headers", "Origin, X-Requested-With, X-XSRF-TOKEN, x-access-token, Authorization, Content-Type, Accept");
+  next();
+});
+
 const port = 3000
 
 app.post('/user/login/', (req, res) => {
