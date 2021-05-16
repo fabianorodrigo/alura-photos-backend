@@ -7,13 +7,15 @@ const app = express()
 app.use(cors())
 app.use(express.json());
 
+const port = 3000;
+
 app.use(function(req, res, next) {
   //permitir o envio do header x-access-token. O httpClient do Angular não está conseguindo (embora o Postman consiga sem isso)
   res.header("Access-Control-Expose-Headers", "Origin, X-Requested-With, X-XSRF-TOKEN, x-access-token, Authorization, Content-Type, Accept");
   next();
 });
 
-const port = 3000
+
 
 app.post('/user/login/', (req, res) => {
     if(req.body.userName == 'fabiano' && req.body.password == 'senha'){
@@ -23,6 +25,15 @@ app.post('/user/login/', (req, res) => {
     }else{
         res.status(401).send(`Usuário senha inválidos: ${req.body.userName}, ${req.body.password}`);
     }
+});
+
+app.get('/user/exists/:userName/', (req, res) => {
+  let photos = [];
+  if (['fabiano','fabianorodrigo','fabiano.nascimento'].includes(req.params.userName)) {
+    res.json({exists: true});
+  } else {
+    res.json({exists: false});
+  }
 });
 
 app.get('/:userName/fotos', (req, res) => {
