@@ -1,7 +1,10 @@
 const express = require('express')
-const cors = require('cors')
+const cors = require('cors');
+
 const jwt = require('jsonwebtoken');
 const accessTokenSecret = 'youraccesstokensecret';
+
+const {readUsers, writeUser } = require('./users');
 
 const app = express()
 app.use(cors())
@@ -18,8 +21,8 @@ app.use(function(req, res, next) {
 
 
 app.post('/user/login/', (req, res) => {
-    if(req.body.userName == 'fabiano' && req.body.password == 'senha'){
-      
+  const users = readUsers();
+    if(users.exists(e=> e.userName == req.body.userName && e.password == req.body.password )){
       const accessToken = jwt.sign({userName: req.body.userName, roles: ['FULL']}, accessTokenSecret);
       res.header('x-access-token', accessToken).json({userName: req.body.userName, sucesso: true});
     }else{
@@ -28,12 +31,13 @@ app.post('/user/login/', (req, res) => {
 });
 
 app.get('/user/exists/:userName/', (req, res) => {
-  let photos = [];
-  if (['fabiano','fabianorodrigo','fabiano.nascimento'].includes(req.params.userName)) {
-    res.json({exists: true});
-  } else {
-    res.json({exists: false});
-  }
+  const users = readUsers();
+  res.json({exists: users.exists(e=> e.userName == req.params.userName)});
+});
+
+app.post('/user/register/', (req, res) => {
+  writeUser(req.body);
+  res.json(user);
 });
 
 app.get('/:userName/fotos', (req, res) => {
