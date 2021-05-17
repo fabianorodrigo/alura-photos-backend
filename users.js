@@ -1,8 +1,9 @@
 const fs = require('fs');
+const path = require('path');
 
-const databasePath = './data/users.json';
+const databasePath = path.join(path.dirname(require.main.filename),'/data/users.json');
 
-export function readUsers(){
+module.exports.readUsers = function readUsers(){
     let retorno = [];
     if(fs.existsSync(databasePath)){
         const data = fs.readFileSync(databasePath);
@@ -11,7 +12,7 @@ export function readUsers(){
     return retorno;
 }
 
-export function writeUser(user){
+module.exports.writeUser = function writeUser(user){
     let dados = [];
     if(fs.existsSync(databasePath)){
         const data = fs.readFileSync(databasePath);

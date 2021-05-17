@@ -3,11 +3,13 @@ lockfileVersion: 5.3
 specifiers:
   cors: ^2.8.5
   express: ^4.17.1
+  font-awesome: ^4.7.0
   jsonwebtoken: ^8.5.1
 
 dependencies:
   cors: 2.8.5
   express: 4.17.1
+  font-awesome: 4.7.0
   jsonwebtoken: 8.5.1
 
 packages:
@@ -164,6 +166,11 @@ packages:
       parseurl: 1.3.3
       statuses: 1.5.0
       unpipe: 1.0.0
+    dev: false
+
+  /font-awesome/4.7.0:
+    resolution: {integrity: sha1-j6jPBBGhoxr9B7BtKQK7n8gVoTM=}
+    engines: {node: '>=0.10.3'}
     dev: false
 
   /forwarded/0.1.2:

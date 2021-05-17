@@ -22,7 +22,7 @@ app.use(function(req, res, next) {
 
 app.post('/user/login/', (req, res) => {
   const users = readUsers();
-    if(users.exists(e=> e.userName == req.body.userName && e.password == req.body.password )){
+    if(users.find(e=> e.userName == req.body.userName && e.password == req.body.password )){
       const accessToken = jwt.sign({userName: req.body.userName, roles: ['FULL']}, accessTokenSecret);
       res.header('x-access-token', accessToken).json({userName: req.body.userName, sucesso: true});
     }else{
