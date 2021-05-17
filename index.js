@@ -41,6 +41,7 @@ app.post('/user/register/', (req, res) => {
 });
 
 app.get('/:userName/fotos', (req, res) => {
+  console.log('x-access-token',req.headers['x-access-token']);
   let photos = [];
   if (req.params.userName === 'fabiano') {
     photos = [
